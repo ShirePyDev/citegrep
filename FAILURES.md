@@ -61,3 +61,13 @@ Real mistakes made while building this, kept on purpose. Each entry: date, what 
 **Fix:** regenerate against public PyPI, AND add a pre-commit hook (scripts/check_lock_public.sh) that fails any commit whose uv.lock contains repo.ai.gato. The lesson is now enforced by tooling, not memory.
 
 **Lesson:** a recurring mistake is a missing guardrail, not a knowledge gap. When the same failure happens twice, stop writing it down and start making it impossible.
+
+## 2026-08 — Root cause of the recurring mirror leak: machine-level uv config
+
+**What broke:** the mirror leak recurred through four fix attempts. Each regenerated lock reverted to repo.ai.gato URLs before it could be committed.
+
+**Root cause (finally found):** ~/.config/uv/uv.toml on the DGX sets `index-url = http://repo.ai.gato/...` as a machine default. Every `uv lock`/`uv sync` read it and rewrote the lock to the mirror. The `UV_INDEX_URL` env var used in earlier fixes does not override this config in the `uv lock` code path — the config file won. We were treating the symptom (the lock) while the machine kept re-injecting the cause.
+
+**Fix:** pin the index in the PROJECT via `[[tool.uv.index]]` with `default = true` in pyproject.toml. Project config overrides machine config, travels with the repo, and needs no env var. Verified: `uv lock` and `uv sync --frozen` both stay clean with no environment override.
+
+**Lesson:** when a fix keeps getting undone, find what is undoing it before reapplying. A symptom that returns is pointing at a cause you have not looked at yet — here, a config file we never inspected until the fourth failure.
