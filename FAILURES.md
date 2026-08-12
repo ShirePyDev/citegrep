@@ -51,3 +51,13 @@ Real mistakes made while building this, kept on purpose. Each entry: date, what 
 **Fix:** build fixtures with `insert_text` and explicit line positions. Caught by the parser's own guard during testing.
 
 **Lesson:** the no-text-layer guard earned its keep on day one — it caught a malformed input before it could produce silently-empty chunks. Fail-loud beats fail-silent.
+
+## 2026-08 — The mirror leak recurred a third time; fixed with a guard, not a note
+
+**What broke:** Phase 1 CI failed at `uv sync --frozen` — uv.lock again pointed at repo.ai.gato (449 entries). Same root cause as two earlier entries.
+
+**Root cause:** a `uv lock`/`uv sync` ran on the campus network without the public-index override, rewriting the lock with mirror URLs, and it got committed. Documenting the lesson twice did not prevent a third occurrence.
+
+**Fix:** regenerate against public PyPI, AND add a pre-commit hook (scripts/check_lock_public.sh) that fails any commit whose uv.lock contains repo.ai.gato. The lesson is now enforced by tooling, not memory.
+
+**Lesson:** a recurring mistake is a missing guardrail, not a knowledge gap. When the same failure happens twice, stop writing it down and start making it impossible.

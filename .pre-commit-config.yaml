@@ -23,3 +23,12 @@ repos:
         entry: uv run ruff format --check --force-exclude
         language: system
         types_or: [python, pyi]
+
+  - repo: local
+    hooks:
+      - id: no-private-mirror-in-lock
+        name: uv.lock must use public PyPI
+        entry: scripts/check_lock_public.sh
+        language: script
+        files: ^uv\.lock$
+        pass_filenames: false
