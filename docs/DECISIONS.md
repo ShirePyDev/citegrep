@@ -37,3 +37,7 @@ Evidence-first: `scripts/diagnose_corpus.py` ran on all 8 real arXiv papers and 
 ## 009 — Chunk size 512 tokens, ~15% overlap, both configurable (2026-08)
 
 512 balances retrieval precision (small enough to be one coherent idea) against context (large enough to be a complete thought) for BGE-M3. Overlap keeps a boundary-straddling thought whole in at least one chunk. Both are config args because Phase 4 tunes them against the gold set. Token counts are a word-based estimate, not BGE-M3's exact tokenizer — fine for boundaries, not for embedding-limit budgeting.
+
+## 010 — Known limitation: hyphenated line-breaks not rejoined (2026-08)
+
+PyMuPDF preserves words split across line-ends as "label- ing" with the hyphen intact. This is correct extraction (right reading order) but slightly degrades retrieval: "label- ing" embeds and BM25-matches differently from "labeling". Deferred, not fixed: we measure its impact in Phase 4 evaluation before deciding whether de-hyphenation logic earns its complexity. Filed as a measured-decision item, not a blind fix.
