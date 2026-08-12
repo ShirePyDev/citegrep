@@ -29,3 +29,11 @@ The API process needs direct CUDA access from Phase 3 (embedder + reranker in-pr
 ## 007 — Container-runtime portability: direct `run` commands, Podman-first (2026-08)
 
 The target DGX is a shared machine running rootless Podman behind a `docker` CLI shim, and its legacy compose provider is broken system software we won't (and can't, without root) repair. While the stack is a single service, the Makefile drives containers directly and auto-detects `podman` or `docker`. `docker-compose.yml` stays in the repo for Docker users and as the spec we consolidate on in Phase 5, when vLLM makes it a multi-service stack (likely via podman-compose installed in our own venv). Cost: the Qdrant run configuration temporarily lives in two places (Makefile and compose file) — accepted drift risk, with a scheduled resolution point.
+
+## 008 — Default PDF extraction, no column handling (2026-08)
+
+Evidence-first: `scripts/diagnose_corpus.py` ran on all 8 real arXiv papers and their body text extracted as clean, continuous prose in PyMuPDF's default reading order — no column interleaving. We therefore ship default extraction and do NOT build column-aware reflow. Cost: a future non-arXiv corpus with hard two-column layouts may need it; the parser has a documented seam where it would go.
+
+## 009 — Chunk size 512 tokens, ~15% overlap, both configurable (2026-08)
+
+512 balances retrieval precision (small enough to be one coherent idea) against context (large enough to be a complete thought) for BGE-M3. Overlap keeps a boundary-straddling thought whole in at least one chunk. Both are config args because Phase 4 tunes them against the gold set. Token counts are a word-based estimate, not BGE-M3's exact tokenizer — fine for boundaries, not for embedding-limit budgeting.

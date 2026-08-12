@@ -8,8 +8,8 @@ and the degraded path.
 
 from fastapi.testclient import TestClient
 
-from documind.api.health import qdrant_ready
-from documind.app import create_app
+from citegrep.api.health import qdrant_ready
+from citegrep.app import create_app
 
 
 def make_client(qdrant_ok: bool) -> TestClient:

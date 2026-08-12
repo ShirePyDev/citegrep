@@ -41,3 +41,13 @@ Real mistakes made while building this, kept on purpose. Each entry: date, what 
 **Fix:** regenerate against public PyPI — `UV_INDEX_URL=https://pypi.org/simple uv lock` — verify zero repo.ai.gato refs remain, commit the clean lock. Same versions and hashes, public sources.
 
 **Lesson:** a lockfile can leak local infrastructure and destroy reproducibility for everyone outside your network. When committing a lock generated behind a corporate/campus proxy, verify its source URLs are public before pushing.
+
+## 2026-08 — insert_textbox silently dropped test text
+
+**What broke:** a chunker test fixture built with PyMuPDF `insert_textbox` produced a PDF the parser rejected as having no text layer.
+
+**Root cause:** `insert_textbox` returns a negative value and renders nothing when the text overflows the box. The overflowing fixture text was silently discarded, so the "text" PDF genuinely had no text.
+
+**Fix:** build fixtures with `insert_text` and explicit line positions. Caught by the parser's own guard during testing.
+
+**Lesson:** the no-text-layer guard earned its keep on day one — it caught a malformed input before it could produce silently-empty chunks. Fail-loud beats fail-silent.

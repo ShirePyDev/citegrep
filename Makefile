@@ -14,7 +14,7 @@ install: ## Sync the virtualenv with pyproject.toml + uv.lock
 	uv sync
 
 dev: ## Run the API locally with auto-reload
-	uv run uvicorn documind.app:app --reload --port 8000
+	uv run uvicorn citegrep.app:app --reload --port 8000
 
 # Recipe lines starting with "-" tell make to continue even if that command
 # fails: creating an existing volume or removing an absent container are
