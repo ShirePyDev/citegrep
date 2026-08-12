@@ -41,3 +41,11 @@ Evidence-first: `scripts/diagnose_corpus.py` ran on all 8 real arXiv papers and 
 ## 010 — Known limitation: hyphenated line-breaks not rejoined (2026-08)
 
 PyMuPDF preserves words split across line-ends as "label- ing" with the hyphen intact. This is correct extraction (right reading order) but slightly degrades retrieval: "label- ing" embeds and BM25-matches differently from "labeling". Deferred, not fixed: we measure its impact in Phase 4 evaluation before deciding whether de-hyphenation logic earns its complexity. Filed as a measured-decision item, not a blind fix.
+
+## 011 — Hybrid embeddings: BGE-M3 dense + fastembed BM25 sparse (2026-08)
+
+Dense (BGE-M3 via sentence-transformers, 1024-dim, cosine) captures semantics; sparse (fastembed Qdrant/bm25, IDF modifier) captures exact rare terms (acronyms, dataset names). Two separate encoders behind Protocol interfaces so each is swappable and unit tests inject fakes without loading models. Chose classic BM25 over BGE-M3's own learned sparse for cleaner corpus-IDF and native Qdrant integration; BGE-M3-sparse and ColBERT are Phase 8 experiments. Validated the full schema+upsert+RRF flow against Qdrant 1.19.0.
+
+## 012 — Idempotent ingestion via content-hash point ids (2026-08)
+
+A point's id is a deterministic UUID from sha256(doc_id, chunk_id, text). Re-ingesting overwrites the same ids instead of duplicating, so ingestion is safe to re-run during development. Verified against real Qdrant: re-upsert kept the point count stable.
