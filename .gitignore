@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+*.egg-info/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+
+# Secrets and local config — .env.example is the committed template
+.env
+
+# Local data (corpus PDFs, eval artifacts) — populated in later phases
+data/
+
+# Tool caches created in-tree on some machines
+.cache/

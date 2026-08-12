@@ -1,0 +1,46 @@
+[project]
+name = "documind"
+version = "0.1.0"
+description = "RAG over PDFs with verifiable citations: hybrid retrieval (dense + BM25, RRF fusion) and cross-encoder reranking."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pydantic-settings>=2.6",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.8",
+    "pre-commit>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/documind"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = [".cache"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # import sorting
+    "UP",  # modernize syntax for the target Python version
+    "B",   # bugbear: likely bugs
+    "SIM", # simplifiable code
+    "RUF", # ruff-specific rules
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
