@@ -31,3 +31,13 @@ Real mistakes made while building this, kept on purpose. Each entry: date, what 
 **Fix:** apply the new Makefile, then gate on evidence before retrying: `make -n up` must print the podman commands, and the file checksum must match the reference.
 
 **Lesson:** after deploying a fix, verify the artifact actually changed (dry-run, version, or hash) before rerunning the test. "I fixed it" is a claim about the repo; the machine only knows what is on its disk.
+
+## 2026-08 — uv.lock leaked the campus mirror; CI couldn't resolve packages
+
+**What broke:** after fixing the action pin, CI failed at `uv sync --frozen` — uv tried to fetch from `http://repo.ai.gato/...` and hit a DNS error on the runner.
+
+**Root cause:** uv.lock records not just versions but the source URL of every package. Generated on the campus network, it baked the internal mirror repo.ai.gato into 437 entries. That host resolves only inside the university, so any clone off-campus (CI, an interviewer's laptop) cannot install.
+
+**Fix:** regenerate against public PyPI — `UV_INDEX_URL=https://pypi.org/simple uv lock` — verify zero repo.ai.gato refs remain, commit the clean lock. Same versions and hashes, public sources.
+
+**Lesson:** a lockfile can leak local infrastructure and destroy reproducibility for everyone outside your network. When committing a lock generated behind a corporate/campus proxy, verify its source URLs are public before pushing.
