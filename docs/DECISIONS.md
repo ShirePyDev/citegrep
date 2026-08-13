@@ -57,3 +57,7 @@ Stage 1 (recall): dense + BM25 prefetch fused with RRF in one Qdrant call, retur
 ## 014 — /debug/retrieve exposes every arm (2026-08)
 
 The endpoint returns dense-only, BM25-only, fused-RRF, and reranked lists side by side, so the effect of hybrid fusion and reranking is visible and demonstrable — the proof that this beats naive top-k. A portfolio and interview centerpiece.
+
+## 015 — Evaluation: page-level gold labels, dev/test split, four-arm ablation (2026-08)
+
+~100 hand-labeled question->page pairs. Page-level (not chunk-level) labels survive re-chunking during tuning. 70/30 dev/test split: tune only on dev, report final numbers on test (tuning on test is self-deception interviewers check for). Report all four arms (dense-only, BM25-only, RRF, RRF+rerank) on Recall@k/MRR/nDCG so the value of hybrid+rerank is measured, not assumed. Accepted bias: any chunk from a gold page counts as a hit (slight over-count) — the cost of re-chunking-stable labels, noted in README.

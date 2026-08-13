@@ -1,0 +1,3 @@
+{"id": "q001", "doc_id": "GuardAgent paper", "question": "How many examples are in the EICU-AC benchmark?", "answer_pages": [14, 15], "type": "keyword", "note": "example: the page stating '316 examples'"}
+{"id": "q002", "doc_id": "GuardAgent paper", "question": "How does GuardAgent decide whether to block an agent's action?", "answer_pages": [1, 2], "type": "semantic", "note": "example: describes the action-plan mechanism"}
+{"id": "q003", "doc_id": "AgentSpec", "question": "What kinds of unsafe categories does AgentSpec evaluate for embodied agents?", "answer_pages": [8], "type": "semantic", "note": "example - replace with your real questions"}
