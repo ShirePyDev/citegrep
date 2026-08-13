@@ -71,3 +71,13 @@ Real mistakes made while building this, kept on purpose. Each entry: date, what 
 **Fix:** pin the index in the PROJECT via `[[tool.uv.index]]` with `default = true` in pyproject.toml. Project config overrides machine config, travels with the repo, and needs no env var. Verified: `uv lock` and `uv sync --frozen` both stay clean with no environment override.
 
 **Lesson:** when a fix keeps getting undone, find what is undoing it before reapplying. A symptom that returns is pointing at a cause you have not looked at yet — here, a config file we never inspected until the fourth failure.
+
+## 2026-08 — torch source pin ignored because torch was a transitive dependency
+
+**What broke:** BGE-M3 wouldn't load — torch 2.13.0 (built for CUDA 13) kept installing on a CUDA 12.4 driver, failing with `undefined symbol: ncclCommResume`. A `[tool.uv.sources]` pin routing torch to a specific PyTorch index had no effect; every `uv lock` kept resolving torch from PyPI.
+
+**Root cause:** `[tool.uv.sources]` only binds its index pin to packages listed as DIRECT dependencies. torch was only a transitive dependency (via sentence-transformers), so uv ignored the pin and resolved torch from the default PyPI index. Manual `uv pip install` fixes were then erased on every `uv sync`/`uv run`, which reinstall from the lock.
+
+**Fix:** add `torch` explicitly to `[project.dependencies]` so the source pin binds, then pin the CPU build (`download.pytorch.org/whl/cpu`). CPU torch has no CUDA libs to mismatch, installs on CI and any machine, and embeds this 250-chunk corpus in minutes — GPU wasn't worth the reproducibility cost for a one-time ingest.
+
+**Lesson:** two lessons. (1) `[tool.uv.sources]` pins only apply to direct dependencies — pin a transitive dep by promoting it to direct. (2) When a config looks correct but has no effect, get verbose output from the tool (`uv lock -v`) instead of re-trying variations; the debug log named the ignored index immediately.
