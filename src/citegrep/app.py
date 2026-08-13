@@ -11,6 +11,7 @@ from fastapi import FastAPI
 
 from citegrep import __version__
 from citegrep.api.health import router as health_router
+from citegrep.api.retrieve import router as retrieve_router
 from citegrep.config import get_settings
 
 
@@ -20,6 +21,7 @@ def create_app() -> FastAPI:
 
     application = FastAPI(title="DocuMind", version=__version__)
     application.include_router(health_router)
+    application.include_router(retrieve_router)
     return application
 
 

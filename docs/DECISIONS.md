@@ -49,3 +49,11 @@ Dense (BGE-M3 via sentence-transformers, 1024-dim, cosine) captures semantics; s
 ## 012 — Idempotent ingestion via content-hash point ids (2026-08)
 
 A point's id is a deterministic UUID from sha256(doc_id, chunk_id, text). Re-ingesting overwrites the same ids instead of duplicating, so ingestion is safe to re-run during development. Verified against real Qdrant: re-upsert kept the point count stable.
+
+## 013 — Two-stage retrieval: hybrid recall (RRF) then cross-encoder rerank (2026-08)
+
+Stage 1 (recall): dense + BM25 prefetch fused with RRF in one Qdrant call, returning 20 candidates. Cheap and wide — bi-encoders embedded everything ahead of time. Stage 2 (precision): BAAI/bge-reranker-v2-m3 cross-encoder re-scores the 20 by reading query+passage jointly, returning top 5. Too slow for the whole collection, ideal for 20. Defaults (20/5) configurable; tuned in Phase 4. Reranker runs on CPU — a second or two per query, acceptable, no GPU dependency.
+
+## 014 — /debug/retrieve exposes every arm (2026-08)
+
+The endpoint returns dense-only, BM25-only, fused-RRF, and reranked lists side by side, so the effect of hybrid fusion and reranking is visible and demonstrable — the proof that this beats naive top-k. A portfolio and interview centerpiece.
