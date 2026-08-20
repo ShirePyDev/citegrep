@@ -1,4 +1,4 @@
-"""DocuMind: RAG over PDFs with verifiable citations."""
+"""citegrep: RAG over PDFs with verifiable citations."""
 
 from importlib.metadata import PackageNotFoundError, version
 
