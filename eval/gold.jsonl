@@ -1,0 +1,15 @@
+{"id": "q001", "doc_id": "GuardAgent paper", "question": "How many unique questions are included in the EICU-AC benchmark?", "answer_pages": [4], "type": "keyword"}
+{"id": "q002", "doc_id": "GuardAgent paper", "question": "How does GuardAgent choose past examples to help it plan how to handle a new safety request?", "answer_pages": [5, 6], "type": "semantic"}
+{"id": "q003", "doc_id": "GuardAgent paper", "question": "Why does GuardAgent use a toolbox of predefined functions when generating guardrail code?", "answer_pages": [5], "type": "conceptual"}
+{"id": "q004", "doc_id": "GuardAgent paper", "question": "Which core LLMs were used to evaluate GuardAgent in the main experiments?", "answer_pages": [7, 8], "type": "keyword"}
+{"id": "q005", "doc_id": "GuardAgent paper", "question": "When the toolbox and memory are removed, what fraction of GuardAgent's generated code is executable before debugging?", "answer_pages": [10], "type": "keyword"}
+{"id": "q006", "doc_id": "GuardAgent paper", "question": "How many Mind2Web-SC examples violate the rule that users under 15 cannot apply for jobs?", "answer_pages": [15], "type": "keyword"}
+{"id": "q007", "doc_id": "GuardAgent paper", "question": "In the CSQA experiment, how many of the 80 sampled questions did GuardAgent assign the correct risk level?", "answer_pages": [20], "type": "keyword"}
+{"id": "q008", "doc_id": "GuardAgent paper", "question": "When GuardAgent denies an action, what does it report besides the denial itself?", "answer_pages": [5, 23], "type": "semantic"}
+{"id": "q009", "doc_id": "GuardAgent paper", "question": "How did the authors decide which databases and columns each role can access in EICU-AC?", "answer_pages": [4, 13], "type": "semantic"}
+{"id": "q010", "doc_id": "GuardAgent paper", "question": "Which error type was never fixed by the debugging mechanism, and what caused those errors?", "answer_pages": [17], "type": "semantic"}
+{"id": "q011", "doc_id": "GuardAgent paper", "question": "What happens to GuardAgent's accuracy when demonstrations are retrieved by least similarity instead of most similarity?", "answer_pages": [18], "type": "semantic"}
+{"id": "q012", "doc_id": "GuardAgent paper", "question": "Why can't guardrails built for LLMs, such as LlamaGuard, be applied directly to LLM agents?", "answer_pages": [2, 3], "type": "conceptual"}
+{"id": "q013", "doc_id": "GuardAgent paper", "question": "Why is a code-based guardrail more reliable than one based on natural language for access control tasks?", "answer_pages": [8, 9, 17], "type": "conceptual"}
+{"id": "q014", "doc_id": "GuardAgent paper", "question": "Why do the authors not evaluate GuardAgent with weaker core LLMs such as 7B models?", "answer_pages": [18, 19], "type": "conceptual"}
+{"id": "q015", "doc_id": "GuardAgent paper", "question": "What does 'non-invasive' mean for GuardAgent, and why does it matter for the target agent's task performance?", "answer_pages": [5, 8, 9], "type": "conceptual"}
