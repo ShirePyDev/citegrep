@@ -12,7 +12,7 @@ LangChain/LlamaIndex hide the retrieval mechanics this project exists to demonst
 
 ## 003 — src/ layout (2026-08)
 
-Code lives in `src/documind/` and is installed into the venv, so tests import the installed package the same way production would. Prevents the classic "works from the repo root only" import bug. Cost: a build-system block in pyproject.
+Code lives in `src/citegrep/` and is installed into the venv, so tests import the installed package the same way production would. Prevents the classic "works from the repo root only" import bug. Cost: a build-system block in pyproject.
 
 ## 004 — Split /healthz (liveness) from /readyz (readiness) (2026-08)
 
