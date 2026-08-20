@@ -1,4 +1,4 @@
-# DocuMind
+# citegrep
 
 RAG over your PDFs with citations you can actually check: every answer links back to the exact passage, highlighted on the source page.
 
