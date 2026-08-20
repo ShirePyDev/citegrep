@@ -19,7 +19,7 @@ def create_app() -> FastAPI:
     settings = get_settings()
     logging.basicConfig(level=settings.log_level.upper())
 
-    application = FastAPI(title="DocuMind", version=__version__)
+    application = FastAPI(title="citegrep", version=__version__)
     application.include_router(health_router)
     application.include_router(retrieve_router)
     return application
