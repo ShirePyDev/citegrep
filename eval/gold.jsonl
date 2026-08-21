@@ -13,3 +13,16 @@
 {"id": "q013", "doc_id": "GuardAgent paper", "question": "Why is a code-based guardrail more reliable than one based on natural language for access control tasks?", "answer_pages": [8, 9, 17], "type": "conceptual"}
 {"id": "q014", "doc_id": "GuardAgent paper", "question": "Why do the authors not evaluate GuardAgent with weaker core LLMs such as 7B models?", "answer_pages": [18, 19], "type": "conceptual"}
 {"id": "q015", "doc_id": "GuardAgent paper", "question": "What does 'non-invasive' mean for GuardAgent, and why does it matter for the target agent's task performance?", "answer_pages": [5, 8, 9], "type": "conceptual"}
+{"id": "q016", "doc_id": "AgentSpec", "question": "Which dataset do the authors use to test code-execution safety, and how many vulnerability types does it cover?", "answer_pages": [2, 6], "type": "keyword"}
+{"id": "q017", "doc_id": "AgentSpec", "question": "Which parser generator is used to parse AgentSpec rules?", "answer_pages": [5, 6], "type": "keyword"}
+{"id": "q018", "doc_id": "AgentSpec", "question": "What is the average time needed to parse an AgentSpec rule?", "answer_pages": [10], "type": "keyword"}
+{"id": "q019", "doc_id": "AgentSpec", "question": "What are the five parts that make up an AgentSpec rule?", "answer_pages": [4], "type": "semantic"}
+{"id": "q020", "doc_id": "AgentSpec", "question": "What can AgentSpec do to intervene when a rule's conditions are met?", "answer_pages": [4, 5], "type": "semantic"}
+{"id": "q021", "doc_id": "AgentSpec", "question": "How does AgentSpec hook into a LangChain agent's execution loop without changing the agent's core logic?", "answer_pages": [5], "type": "semantic"}
+{"id": "q022", "doc_id": "AgentSpec", "question": "How does AgentSpec turn a written safety requirement into code that checks for violations?", "answer_pages": [6], "type": "semantic"}
+{"id": "q023", "doc_id": "AgentSpec", "question": "Why were no violations flagged in the 'Miss default case' and 'Duplicate key' categories of the RedCode experiment?", "answer_pages": [7], "type": "semantic"}
+{"id": "q024", "doc_id": "AgentSpec", "question": "What does enabling AgentSpec cost the embodied agent in terms of safe-task performance?", "answer_pages": [8], "type": "semantic"}
+{"id": "q025", "doc_id": "AgentSpec", "question": "Why do the authors consider pre-execution risk assessment insufficient for agent safety?", "answer_pages": [1, 2], "type": "conceptual"}
+{"id": "q026", "doc_id": "AgentSpec", "question": "How does AgentSpec's approach to enforcing safety differ from GuardAgent's?", "answer_pages": [2, 10], "type": "conceptual"}
+{"id": "q027", "doc_id": "AgentSpec", "question": "What kind of safety reasoning is outside AgentSpec's current capabilities, and how do the authors propose to address it?", "answer_pages": [11], "type": "conceptual"}
+{"id": "q028", "doc_id": "AgentSpec", "question": "Why do the LLM-generated rules fall short of the manually implemented ones?", "answer_pages": [9], "type": "conceptual"}
