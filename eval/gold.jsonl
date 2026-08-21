@@ -40,8 +40,8 @@
 {"id": "q040", "doc_id": "Prompt Injection attack against LLM", "question": "Why do the authors prefer a Framework Component that elicits shorter responses from the target application?", "answer_pages": [7, 8], "type": "conceptual"}
 {"id": "q041", "doc_id": "NemoGuardrails", "question": "What is the name of the custom modeling language used in NeMo Guardrails to define programmable rails?", "answer_pages": [1], "type": "keyword"}
 {"id": "q042", "doc_id": "NemoGuardrails", "question": "What two main categories of programmable rails does NeMo Guardrails identify?", "answer_pages": [3], "type": "keyword"}
-{"id": "q043", "doc_id": "NemoGuardrails", "question": "In the main topical-rails evaluation, how many test samples and how many distinct intents does the Banking dataset contain?", "answer_pages": [5], "type": "keyword"}
-{"id": "q044", "doc_id": "NemoGuardrails", "question": "What overall accuracy do text-davinci-003 and gpt-3.5-turbo reach on the fact-checking rail using the MS-MARCO dataset?", "answer_pages": [6], "type": "keyword"}
+{"id": "q043", "doc_id": "NemoGuardrails", "question": "In the main topical-rails evaluation, how many test samples and how many distinct intents does the Banking dataset contain?", "answer_pages": [13, 14], "type": "keyword"}
+{"id": "q044", "doc_id": "NemoGuardrails", "question": "What overall accuracy do text-davinci-003 and gpt-3.5-turbo reach on the fact-checking rail using the MS-MARCO dataset?", "answer_pages": [6, 7], "type": "keyword"}
 {"id": "q045", "doc_id": "NemoGuardrails", "question": "How does the hallucination rail decide whether a generated response is a hallucination?", "answer_pages": [4], "type": "semantic"}
 {"id": "q046", "doc_id": "NemoGuardrails", "question": "What are the three stages the Guardrails runtime uses to enforce topical rails?", "answer_pages": [3, 4], "type": "semantic"}
 {"id": "q047", "doc_id": "NemoGuardrails", "question": "When a user's canonical form does not match any developer-defined flow, how does NeMo Guardrails decide the next step?", "answer_pages": [4], "type": "semantic"}

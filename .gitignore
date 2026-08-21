@@ -17,3 +17,4 @@ data/
 
 # Tool caches created in-tree on some machines
 .cache/
+.ipynb_checkpoints/
